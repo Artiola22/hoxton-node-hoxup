@@ -1,9 +1,12 @@
-import { useEffect, useState } from 'react'
+import { Props, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import Conversation from '../components/Conversation'
 
-function Main({ currentUser, logOut, users, setModal, modal }) {
-  const [conversations, setConversations] = useState([])
+import { ConversationType } from '../Types/ConversationType'
+import { MainProps } from '../Types/MainProps'
+
+function Main({ currentUser, logOut, users, setModal, modal }: MainProps) {
+  const [conversations, setConversations] = useState<ConversationType[]>([])
   const params = useParams()
   const navigate = useNavigate()
 
@@ -37,7 +40,8 @@ function Main({ currentUser, logOut, users, setModal, modal }) {
     return true
   })
 
-  function createConversation(participantId) {
+  function createConversation(participantId: number) {
+    if(currentUser === null)return
     fetch('http://localhost:4000/conversations', {
       method: 'POST',
       headers: {
@@ -106,6 +110,7 @@ function Main({ currentUser, logOut, users, setModal, modal }) {
 
             // what are their details?
             const talkingToUser = users.find(user => user.id === talkingToId)
+            if (talkingToUser === undefined)return
 
             return (
               <li key={conversation.id}>

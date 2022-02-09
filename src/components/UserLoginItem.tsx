@@ -1,4 +1,10 @@
-function UserLoginItem ({ user, logIn }) {
+import { User } from "../Types/User"
+import { UserLoginProps } from "../Types/UserLoginProps"
+
+
+
+
+function UserLoginItem ({ user, logIn }: UserLoginProps) {
   return (
     <li>
       <button

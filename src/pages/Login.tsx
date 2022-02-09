@@ -1,6 +1,9 @@
+import { type } from 'os'
 import UserLoginItem from '../components/UserLoginItem'
+import { LoginProps } from '../Types/LoginProps'
 
-function Login ({ users, logIn, setModal }) {
+
+function Login ({ users, logIn, setModal }: LoginProps) {
   return (
     <div className='main-wrapper login'>
       <section className='login-section'>

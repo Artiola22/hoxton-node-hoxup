@@ -1,13 +1,15 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { ConversationProps } from '../Types/ConversationProps'
+import { CurrentConversationType } from '../Types/CurrentConversationType'
 import Message from './Message'
 
-function Conversation({ currentUser }) {
-  const [currentConversation, setCurrentConversation] = useState(null)
+function Conversation({ currentUser }: ConversationProps) {
+  const [currentConversation, setCurrentConversation] = useState<CurrentConversationType | null >(null)
 
   const params = useParams()
 
-  function createMessage(text) {
+  function createMessage(text: string) {
     // create a message on the server ✅
 
     fetch('http://localhost:4000/messages', {
