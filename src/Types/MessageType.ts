@@ -1,6 +1,6 @@
 export type MessageType = {
     userId: number
-    textMessage: string
+    messageText: string
     conversationId: number
     id: number
 }

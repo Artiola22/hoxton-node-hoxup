@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { ConversationProps } from '../Types/ConversationProps'
 import { CurrentConversationType } from '../Types/CurrentConversationType'
+import { FormType } from '../Types/FormType'
 import Message from './Message'
 
 function Conversation({ currentUser }: ConversationProps) {
@@ -66,11 +67,12 @@ function Conversation({ currentUser }: ConversationProps) {
       <footer>
         <form
           className='panel conversation__message-box'
-          onSubmit={e => {
-            e.preventDefault()
-            createMessage(e.target.text.value)
-            e.target.reset()
-          }}
+          onSubmit={(e: React.SyntheticEvent) => {
+            const formEl = e.target as FormType;
+            e.preventDefault();
+            createMessage(formEl.text.value);
+            formEl.text.value = ''
+   }}
         >
           <input
             type='text'
